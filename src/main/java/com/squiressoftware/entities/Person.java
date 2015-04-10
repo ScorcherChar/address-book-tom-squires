@@ -4,7 +4,9 @@ package com.squiressoftware.entities;
 import com.squiressoftware.enums.Sex;
 
 
+import java.time.Duration;
 import java.time.LocalDate;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Person {
 
@@ -18,4 +20,19 @@ public class Person {
 		this.birthdate = birthdate;
 	}
 
+	public Duration getAgeDifference(Person otherPerson){
+		throw new NotImplementedException();
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public Sex getSex() {
+		return sex;
+	}
+
+	public LocalDate getBirthdate() {
+		return birthdate;
+	}
 }
