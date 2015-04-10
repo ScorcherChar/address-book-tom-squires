@@ -17,7 +17,7 @@ public class PersonBuilder {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 		LocalDate dob = LocalDate.parse(fields[2].trim(), formatter);
 
-		//Person probably wasn't born in the future. Assume it was decade before
+		//Person probably wasn't born in the future. Assume it was century before
 		if (dob.isAfter(LocalDate.now())) {
 			dob.minus(1, ChronoUnit.CENTURIES);
 		}
