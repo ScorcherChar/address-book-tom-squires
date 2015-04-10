@@ -4,9 +4,8 @@ package com.squiressoftware.entities;
 import com.squiressoftware.enums.Sex;
 
 
-import java.time.Duration;
 import java.time.LocalDate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.time.temporal.ChronoUnit;
 
 public class Person {
 
@@ -14,14 +13,14 @@ public class Person {
 	private final Sex sex;
 	private final LocalDate birthdate;
 
-	public Person(String fullName, Sex sex, LocalDate birthdate){
+	public Person(String fullName, Sex sex, LocalDate birthdate) {
 		this.fullName = fullName;
 		this.sex = sex;
 		this.birthdate = birthdate;
 	}
 
-	public Duration getAgeDifference(Person otherPerson){
-		throw new NotImplementedException();
+	public Long getAgeDifference(Person otherPerson, ChronoUnit unit) {
+		return unit.between(this.getBirthdate(), otherPerson.getBirthdate());
 	}
 
 	public String getFullName() {

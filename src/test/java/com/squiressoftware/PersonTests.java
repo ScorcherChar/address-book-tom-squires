@@ -7,9 +7,9 @@ import com.squiressoftware.entities.Person;
 import com.squiressoftware.enums.Sex;
 
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class PersonTests {
 	@Test
@@ -18,8 +18,8 @@ public class PersonTests {
 		Person bill = new Person("Bill McKnight", Sex.MALE, LocalDate.parse("16/03/1977",formatter));
 		Person paul = new Person("Paul Robinson", Sex.MALE, LocalDate.parse("15/01/1985",formatter));
 
-		Duration ageDiff = bill.getAgeDifference(paul);
+		Long ageDiff = bill.getAgeDifference(paul, ChronoUnit.DAYS);
 
-		Assert.assertEquals(2862, ageDiff.toDays());
+		Assert.assertEquals(new Long("2862"), ageDiff);
 	}
 }
