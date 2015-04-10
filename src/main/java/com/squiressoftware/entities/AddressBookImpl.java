@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class AddressBookImpl implements AddressBook {
@@ -36,12 +36,13 @@ public class AddressBookImpl implements AddressBook {
 
 	@Override
 	public Person getPersonByName(String fullName) {
-		return null;
+		Optional<Person> foundPerson = people.stream().filter(person -> person.getFullName().equalsIgnoreCase(fullName)).findFirst();
+		return foundPerson.orElse(null);
 	}
 
 	@Override
-	public List<Person> getAll() {
-		return null;
+	public Set<Person> getAll() {
+		return people;
 	}
 
 	private void parseAndAddToPeopleList(String addressData) {

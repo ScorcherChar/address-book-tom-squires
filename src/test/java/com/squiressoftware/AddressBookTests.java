@@ -1,6 +1,7 @@
 package com.squiressoftware;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -23,5 +24,21 @@ public class AddressBookTests {
 		AddressBook addressBook = new AddressBookImpl("AddressBook1");
 		Person oldestPerson = addressBook.getOldestPerson();
 		assertEquals("Wes Jackson", oldestPerson.getFullName());
+	}
+
+	@Test
+	public void givenWesJacksonInAddressBook_whenGetPersonCalledForWes_thenWesReturned()throws Exception{
+		final String NAME = "Wes Jackson";
+		AddressBook addressBook = new AddressBookImpl("AddressBook1");
+		Person wes = addressBook.getPersonByName(NAME);
+		assertEquals(NAME, wes.getFullName());
+	}
+
+	@Test
+	public void givenJamesBondNotInAddressBook_whenGetPersonCalledForJames_thenNullReturned()throws Exception{
+		final String NAME = "James Bond";
+		AddressBook addressBook = new AddressBookImpl("AddressBook1");
+		Person james = addressBook.getPersonByName(NAME);
+		assertNull(james);
 	}
 }
