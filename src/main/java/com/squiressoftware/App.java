@@ -1,13 +1,26 @@
 package com.squiressoftware;
 
-/**
- * Hello world!
- *
- */
+import com.squiressoftware.entities.AddressBookImpl;
+
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class App 
 {
+	private static String addressDataLocation = "AddressBook";
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+		try {
+			AddressBookImpl addressBook = new AddressBookImpl(addressDataLocation);
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+
     }
+
+
 }
