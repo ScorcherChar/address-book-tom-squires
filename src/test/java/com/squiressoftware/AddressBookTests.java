@@ -10,6 +10,9 @@ import com.squiressoftware.entities.AddressBookImpl;
 import com.squiressoftware.entities.Person;
 import com.squiressoftware.enums.Sex;
 
+
+import java.time.format.DateTimeFormatter;
+
 public class AddressBookTests extends BaseTest{
 
 	@Test
@@ -32,6 +35,15 @@ public class AddressBookTests extends BaseTest{
 		AddressBook addressBook = new AddressBookImpl(getStringFromClassPath("AddressBook1"));
 		Person wes = addressBook.getPersonByName(NAME);
 		assertEquals(NAME, wes.getFullName());
+	}
+
+	@Test
+	public void givenWesJacksonInAddressBook_whenGetPersonCalledForWes_thenCorrectAgeGiven()throws Exception{
+		final String NAME = "Wes Jackson";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		AddressBook addressBook = new AddressBookImpl(getStringFromClassPath("AddressBook1"));
+		Person wes = addressBook.getPersonByName(NAME);
+		assertEquals("14/08/1974", wes.getBirthdate().format(formatter));
 	}
 
 	@Test

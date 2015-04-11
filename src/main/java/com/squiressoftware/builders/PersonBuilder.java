@@ -19,7 +19,7 @@ public class PersonBuilder {
 
 		//Person probably wasn't born in the future. Assume it was century before
 		if (dob.isAfter(LocalDate.now())) {
-			dob.minus(1, ChronoUnit.CENTURIES);
+			dob = dob.minus(1, ChronoUnit.CENTURIES);
 		}
 
 		return new Person(fullName, sex, dob);
