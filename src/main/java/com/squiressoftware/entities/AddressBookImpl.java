@@ -48,6 +48,8 @@ public class AddressBookImpl implements AddressBook {
 		return people;
 	}
 
+	//Nb - if csv is invalid this will die ungraciously or give odd results.
+	// Data integrity checking was deemed out of scope for this application
 	private void parseAndAddToPeopleList(String addressData) {
 		String[] rows = addressData.split(System.lineSeparator());
 		Arrays.asList(rows).forEach(row -> people.add(personBuilder.buildFromCSVRow(row)));
