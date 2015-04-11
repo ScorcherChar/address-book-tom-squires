@@ -5,6 +5,7 @@ import com.squiressoftware.enums.Sex;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Person {
@@ -33,5 +34,11 @@ public class Person {
 
 	public LocalDate getBirthdate() {
 		return birthdate;
+	}
+
+	@Override
+	public String toString(){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return String.format("%s :: %s :: %s", fullName, sex, birthdate.format(formatter));
 	}
 }

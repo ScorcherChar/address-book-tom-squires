@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,8 +18,12 @@ public class AddressBookImpl implements AddressBook {
 	private PersonBuilder personBuilder = new PersonBuilder();
 	private Set<Person> people = new HashSet<>();
 
-	public AddressBookImpl(String dataLocation) throws IOException, URISyntaxException {
-		String addressData = getFileFromClassPath(dataLocation);
+	public AddressBookImpl(Path dataLocation) throws IOException, URISyntaxException {
+		String addressData = getFileData(dataLocation);
+		parseAndAddToPeopleList(addressData);
+	}
+
+	public AddressBookImpl(String addressData) throws IOException, URISyntaxException {
 		parseAndAddToPeopleList(addressData);
 	}
 
@@ -50,9 +53,8 @@ public class AddressBookImpl implements AddressBook {
 		Arrays.asList(rows).forEach(row -> people.add(personBuilder.buildFromCSVRow(row)));
 	}
 
-	private String getFileFromClassPath(String fileName) throws IOException, URISyntaxException {
-		Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());
-		return new String(Files.readAllBytes(path), "UTF-8");
+	private String getFileData(Path location) throws IOException, URISyntaxException {
+		return new String(Files.readAllBytes(location), "UTF-8");
 	}
 
 }
