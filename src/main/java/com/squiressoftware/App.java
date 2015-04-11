@@ -37,7 +37,7 @@ public class App {
 				System.out.println(COMMANDS_TEXT);
 				BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 				String inputText = bufferRead.readLine();
-				if(inputText.equals("exit")){
+				if (inputText.equals("exit")) {
 					return;
 				}
 				runCommand(System.out, inputText, addressBook);
@@ -59,12 +59,10 @@ public class App {
 
 		switch (command) {
 			case "getcount":
-				Sex sex = Sex.valueOf(inputWords[1].toUpperCase());
-				Long count = addressBook.getCount(sex);
-				output.println(String.format("found %s", count));
+				runGetCount(output, addressBook, inputWords[1]);
 				break;
 			case "getoldest":
-				output.println(String.format("%s is oldest",addressBook.getOldestPerson().getFullName()));
+				runGetOldest(output, addressBook);
 				break;
 			case "compare":
 				runCompareCommand(output, addressBook, inputWords);
@@ -75,7 +73,22 @@ public class App {
 		}
 	}
 
+	private static void runGetOldest(PrintStream output, AddressBook addressBook) {
+
+		output.println(String.format("%s is oldest", addressBook.getOldestPerson().getFullName()));
+	}
+
+	private static void runGetCount(PrintStream output, AddressBook addressBook, String inputWord) {
+		Sex sex = Sex.valueOf(inputWord.toUpperCase());
+		Long count = addressBook.getCount(sex);
+		output.println(String.format("found %s", count));
+	}
+
 	private static void runCompareCommand(PrintStream output, AddressBook addressBook, String[] inputWords) {
+		if (inputWords.length != 5) {
+			output.println(String.format("Invalid input. Required person1FirstName person1Surname person2FirstName person2Surname"));
+			return;
+		}
 		String person1name = inputWords[1] + " " + inputWords[2];
 		Person person1 = addressBook.getPersonByName(person1name);
 		if (person1 == null) {
@@ -90,9 +103,9 @@ public class App {
 		}
 		Long ageDiff = person1.getAgeDifference(person2, ChronoUnit.DAYS);
 
-		if(ageDiff < 0){
+		if (ageDiff < 0) {
 			output.println(String.format("%s is %s days older than %s", person2.getFullName(), -ageDiff, person1.getFullName()));
-		}else{
+		} else {
 			output.println(String.format("%s is %s days older than %s", person1.getFullName(), ageDiff, person2.getFullName()));
 		}
 	}

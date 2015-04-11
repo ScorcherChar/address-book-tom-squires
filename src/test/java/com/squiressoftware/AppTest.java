@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.squiressoftware.App;
 import com.squiressoftware.entities.AddressBook;
 import com.squiressoftware.entities.AddressBookImpl;
 
@@ -92,6 +91,17 @@ public class AppTest
 
 		verify(output,times(1)).println(anyString());
 		verify(output,times(1)).println("Wes Jackson is 6307 days older than Gemma Lane");
+	}
+
+	@Test
+	public void givenInvalidParamsSentToCompareCommand_whenCompareCalled_thenErrorTextDisplated() throws Exception{
+		String inputText = "compare Gemma Lane Wes";
+		AddressBook addressBook = new AddressBookImpl(getStringFromClassPath("AddressBook1"));
+
+		App.runCommand(output,inputText , addressBook);
+
+		verify(output,times(1)).println(anyString());
+		verify(output,times(1)).println("Invalid input. Required person1FirstName person1Surname person2FirstName person2Surname");
 	}
 
 	@Test
