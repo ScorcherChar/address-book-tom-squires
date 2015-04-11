@@ -42,12 +42,6 @@ public class AddressBookImpl implements AddressBook {
 		Optional<Person> foundPerson = people.stream().filter(person -> person.getFullName().equalsIgnoreCase(fullName)).findFirst();
 		return foundPerson.orElse(null);
 	}
-
-	@Override
-	public Set<Person> getAll() {
-		return people;
-	}
-
 	//Nb - if csv is invalid this will die ungraciously or give odd results.
 	// Data integrity checking was deemed out of scope for this application
 	private void parseAndAddToPeopleList(String addressData) {
