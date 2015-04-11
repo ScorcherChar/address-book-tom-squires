@@ -18,7 +18,7 @@ import java.time.temporal.ChronoUnit;
 public class App {
 	private static String INTO_TEXT = "Welcome to the address book app. Available commands are as follows";
 	private static String COMMANDS_TEXT =
-			"Please enter one of the following; exit, getcount male|female, getoldest, compare person1name person2name (will give age difference in days)";
+			"Please enter one of the following; exit, getcount male|female, getoldest, compare  person1FirstName person1Surname person2FirstName person2Surname (will give age difference in days)";
 
 	public static void main(String[] args) {
 
