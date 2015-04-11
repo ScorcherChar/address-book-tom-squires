@@ -48,7 +48,7 @@ public class App {
 		}
 	}
 
-	public static void runCommand(PrintStream output, String inputText, AddressBook addressBook) throws IOException, URISyntaxException {
+	public static void runCommand(PrintStream output, String inputText, AddressBook addressBook) {
 
 		String[] inputWords = inputText.split(" ");
 		String command = inputWords[0];
