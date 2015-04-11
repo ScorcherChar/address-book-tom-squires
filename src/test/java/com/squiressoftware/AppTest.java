@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.squiressoftware.App;
 import com.squiressoftware.entities.AddressBook;
 import com.squiressoftware.entities.AddressBookImpl;
 
@@ -31,7 +32,7 @@ public class AppTest
 		String inputText = "some junk";
 		AddressBook addressBook = new AddressBookImpl(getStringFromClassPath("AddressBook1"));
 
-		App.runCommand(output,inputText , addressBook);
+		App.runCommand(output, inputText, addressBook);
 
 		String errorText = "Unknown command. Please try again";
 		verify(output,times(1)).println(anyString());

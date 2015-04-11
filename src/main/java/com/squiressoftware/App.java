@@ -44,7 +44,7 @@ public class App {
 
 			}
 		} catch (URISyntaxException | IOException e) {
-			e.printStackTrace();
+			System.out.println("Error loading file. Please check file exists is of correct format and app has read permission");
 		}
 	}
 
